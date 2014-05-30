@@ -1,0 +1,46 @@
+<html>
+
+<head>
+
+<script type="text/javascript" language="javascript" src="http://www.streetdirectory.com/js/map_api/m.php"></script> 
+
+<script type="text/javascript">
+    function initialize() {
+    
+        var latlng = new GeoPoint(103.80733282853, 1.289478890541);
+        
+        var myOptions = {
+        
+            zoom: 13,
+            
+            center: latlng,
+            
+            showCopyright: false
+        
+        };
+        
+        var map = new SD.genmap.Map(
+        
+            document.getElementById("map_canvas"), 
+            
+            myOptions
+        
+        );
+        alert(map.zoom);
+        EventManager.add(map, "click", function(){
+            alert("Map click");
+            alert(map.viewportInfo.div.id);
+        });
+    
+    }
+</script>
+
+</head>
+
+<body onload="initialize()">
+
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Streetdirectory - Javascript Map API Example: Reverse Geocode</title>
+<style type="text/css">
+#info {
+	position:absolute;
+	display:none;
+	top:10px;
+	left:520px;
+	width:450px;
+	height:500px;
+	overflow:auto;
+}
+#columnInfo table {
+	border:1px solid #999999;
+}
+td.ticked {
+	background-color:#EEEEEE;
+	color:#333333;
+	cursor:pointer;
+	font-size:12px;
+}
+td.unticked {
+	background-color:#FFFFFF;
+	color:#333333;
+	font-size:12px;
+	cursor:pointer;
+}
+#map {
+	width:500px;
+	height:500px;
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+#Layer1 {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	padding:10px;
+	margin:10px;
+	background-color:#FFFFFF;
+	width:480px;
+	z-index:1;
+	position:absolute;
+	top:530px;
+	border:1px dotted #333333;
+}
+h3 {
+	margin-top:0;
+}
+</style>
+
+<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" language="javascript" src="http://www.streetdirectory.com/js/map_api/m.php"></script>
+<script type="text/javascript">
+	var map, geocode, mm;
+	
+	function loadMap() {
+		var opts = {
+			zoom: 12,
+			center: new GeoPoint(103.83050972046, 1.304787132947),
+			enableDefaultLogo: false,
+			showCopyright: false
+		};
+		map = new SD.genmap.Map(document.getElementById('map'), opts); 
+		
+		//map.addLogo("../image/sd.jpg", {width:130, height:40}, SD.POSITION_BOTTOM_LEFT, "www.streetdirectory.com");
+		
+		var navControl = new CompleteMapControl();
+		map.addControl(navControl); 
+		navControl.setDisplay(0,false);
+		
+		geocode = new SDGeocode(map);
+		geocode.removeMouseClick();
+		
+		mm = new SD.genmap.MarkerStaticManager({
+			 map:map
+		});
+		
+		alert("After Static Manager");
+		EventManager.add(map, 'mousedown', function(e) {
+			if (SD.util.getMouseButton(e) == 'RIGHT') {
+				rGeocode(map.viewportInfo.lastCursorLatLon.lon, map.viewportInfo.lastCursorLatLon.lat);
+			}
+		});
+	}
+	
+	function rGeocode(x,y) {
+		$("#longlat").html( x + "," + y);
+		geocode.reverse(SDGeocode.SG, {x:x, y:y, callback: "foo"});
+	}
+	
+	function foo(json) {
+		if (json.length == 0) return;
+		var rec = json[1];
+		
+		mm.clear();
+		
+		if (rec.x && rec.y) {
+			var icon = new SD.genmap.MarkerImage({
+				image : "./openrice_icon.png",
+				title : rec.t,
+				iconSize : new Size(15, 15),
+				iconAnchor : new Point(7, 15),
+				infoWindowAnchor : new Point(5, 0)
+			});
+			
+			var geo = new GeoPoint(parseFloat(rec.x), parseFloat(rec.y));
+			map.setCenter(geo, map.zoom);
+			var marker = mm.add({
+				position: geo,
+				map: map,
+				icon: icon
+			});
+			
+			var content = "<div style='width:auto;height:auto;'>" + 
+							rec.a + "<br/>" + rec.t + 
+							"</div>";
+			map.infoWindow.open(marker,content);
+		}
+	}
+	
+	function assignClickEvent(row, marker, rec) {
+		row.click(function() {
+			map.infoWindow.open(marker, rec.a + "<br>" + rec.x + " - " + rec.y);
+		});
+	}
+</script>
+</head>
+
+<body onLoad="loadMap()">
+<img id='loadingImg' style='display:none; z-index:100; position: absolute; top: 150px; left: 560px;' src='../image/loading_map.gif'/>
+<div id="info">
+<table cellpadding="0" cellspacing="0" id="tableInfo">
+  <tbody>
+  <tr>
+    <td><h3><span id="ttl"></span> result(s) found</h3></td>
+  </tr>
+  <tr>
+    <td><strong><font style="color:red">Can't find your location? Right-click on the map to tag it.</font></strong></td>
+  </tr>	
+  <tr>
+    <td id="columnInfo"></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<div id="map"></div>
+<div id="Layer1">
+<h2>Streetdirectory - Javascript Map API Example: Reverse Geocoding with callback</h2>
+<h3 id="container">Selected long, lat : <span id="longlat"></span></h3>
+</div>
+</body>
+</html>

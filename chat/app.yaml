@@ -1,0 +1,20 @@
+application: mychannel
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+# Endpoints
+- url: /_ah/spi/.*
+  script: chatEndpoint.APPLICATION
+
+- url: /scripts #your javascript folder
+  static_dir: scripts
+
+- url: /.*
+  script: mychannel.app
+
+libraries:
+- name: endpoints
+  version: 1.0
