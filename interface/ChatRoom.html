@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MeetMeThere</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="./spacelab/bootstrap.min.css" rel="stylesheet">
+  <link href="https://kuler.adobe.com/blue-grey-color-theme-1073841/"/>
+   <!-- Custom styles for this template -->
+  <link href="./css/sticky-footer.css" rel="stylesheet">
+
+  <style>
+  body {
+  background-color: grey;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  } 
+  .bodyContent{
+  margin: 0px auto;
+  max-width: 1000px;
+  background-color: white;
+  }
+  .memberList{
+  width:200px;
+  height:200px;
+  box-shadow: 5px 5px 5px #888888;
+  }
+  .docList{
+  width:200px;
+  height:200px;
+  box-shadow: 5px 5px 5px #888888;
+  }
+  .meetingInfoList{
+  width:200px;
+  height:200px;
+  box-shadow: 5px 5px 5px #888888;
+  }
+  .chatArea{
+  width:750px;
+  height: 600px;
+  position: absolute;
+  left: 480px;
+  top : 140px;
+  }
+  textarea{
+    resize: none;
+  }
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="navbar-fixed-top.css" rel="stylesheet">
+  </head>
+  <!-- Start of Body-->
+<body>
+   <!--Start of Nav Bar-->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="./index.html">MeetMeThere</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav" style="float: right;">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./AboutUs.html">About Us</a></li>
+            <li><a href="./login.html">Login</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <!-- End of Nav Bar-->  
+  <!-- Start of Body Content -->
+  <div class="bodyContent">
+    <h2 style="text-align: center; text-decoration:underline;">ChatRoom for Project <<label style="text-decoration:underline;">$projectName</label>></h2>
+   
+    <div class="memberList"></div>
+    <div class="docList"></div>
+    <div class="meetingInfoList"></div>
+    <div><textarea class="chatArea" placeholder="chatRoom"></textarea></div>
+    <br/>
+  </div>
+  <!-- End of Body Content -->
+
+ <!--Start of Footer-->
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </div>
+<!-- End of Footer -->   
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script>
+    $('#sidebar').affix({
+      offset: {>
+        top: $('.navbar-default').height()
+      }
+    }); </script>
+</body>
+<!-- End of Body-->
+  </html>

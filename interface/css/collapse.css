@@ -1,0 +1,62 @@
+.container2 {
+    margin:00px;
+    width:810px;
+    font-family:Arial, Helvetica, sans-serif;
+    }
+    .slot {
+ overflow: hidden;
+  width:810px;
+  margin-bottom:5px;
+  }
+ 
+.main3 {
+    float:left;
+    width:810px;
+    height:40px;
+    background:#CCC;
+    line-height:40px;
+
+    }
+
+.main2{
+  background: #999; 
+}
+    
+.main3:hover {
+  background: #999;
+  cursor: pointer;
+  
+    }
+    
+    .profile {
+        float:left;
+        width:290px;
+        padding-left:9px;
+        
+        }
+    .address {
+        float:left;
+        width:290px;
+        padding-left:9px;
+       
+        }
+        
+    .updown {
+        float:right;
+        width:40px;
+        height:40px;
+        text-align:center;
+        }
+ 
+.under {
+    display:none;
+    float:left;
+    width:810px;
+    background:#eee;
+    text-align:center;
+    }
+    
+    .bpm {
+        float:left;
+        padding-left: 10px;
+        }
