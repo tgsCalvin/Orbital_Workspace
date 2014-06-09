@@ -126,6 +126,25 @@ h3 {
 			map.infoWindow.open(marker, rec.a + "<br>" + rec.x + " - " + rec.y);
 		});
 	}
+
+	function search(region, keyword) {
+		$("#loadingImg").show();
+		$("#info").hide();
+		
+		gc = SDGeocode.SG;
+		if(region == 'ID')
+			gc = SDGeocode.ID;
+		else if(region == 'MY')
+			gc = SDGeocode.MY;
+		else if(region == 'PH')
+			gc = SDGeocode.PH;
+		
+		var searchOption = {
+			"q": keyword, 
+			"limit": 20
+		};
+		geocode.requestData(gc, searchOption);
+	}
 </script>
 </head>
 
@@ -150,6 +169,10 @@ h3 {
 <div id="Layer1">
 <h2>Streetdirectory - Javascript Map API Example: Reverse Geocoding with callback</h2>
 <h3 id="container">Selected long, lat : <span id="longlat"></span></h3>
+<h2>Keyword</h2>
+<form action="#" onSubmit="search(this.region.value, this.address.value); return false;">
+<input type="text" name="address" id="address" style="width:200px" value="Orchard Road" /><input name="submit" type="submit" value="Find" />
+</form>
 </div>
 </body>
 </html>

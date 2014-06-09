@@ -25,7 +25,7 @@
         document.getElementById('msg').value+= "\nI say: " + tempMsg;
         pkt.msg=tempMsg;
         var req=JSON.stringify(pkt);
-
+        alert("test");
         var xhr = new XMLHttpRequest();
         xhr.open('POST', _PATH, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
