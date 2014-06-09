@@ -39,16 +39,27 @@
   height:200px;
   box-shadow: 5px 5px 5px #888888;
   }
-  .chatArea{
+  .chatroom{
   width:750px;
-  height: 600px;
+  height: 480px;
   position: absolute;
   left: 480px;
   top : 140px;
   }
-  textarea{
-    resize: none;
+  .chatarea{
+  width:650px;
+  height: 100px;
+  position: absolute;
+  left: 480px;
+  top: 630px;
   }
+  .btnSend{
+    position: absolute;
+    left: 1150px;
+    top: 690px;
+
+  }
+
   </style>
   <!-- Custom styles for this template -->
   <link href="navbar-fixed-top.css" rel="stylesheet">
@@ -78,7 +89,10 @@
     <div class="memberList"></div>
     <div class="docList"></div>
     <div class="meetingInfoList"></div>
-    <div><textarea class="chatArea" placeholder="chatRoom"></textarea></div>
+    <div><textarea class="chatroom" readonly style="resize:none;" placeholder="chatRoom"></textarea></div>
+    <div><textarea class="chatarea" style="resize:none;" placeholder="start chat"></textarea>
+    <div class="btnSend"><button type="button" class="btn btn-primary">Send</button></div>
+    </div>
     <br/>
   </div>
   <!-- End of Body Content -->
